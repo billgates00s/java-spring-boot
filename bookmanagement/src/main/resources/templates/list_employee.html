@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <title>List Employee</title>
+</head>
+<body>
+
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<div class="container">
+    <h2>LIST EMPLOYEE</h2>
+    <div>
+        User: <span sec:authentication="name"></span>
+        <br>
+        Role(s):<span sec:authentication="principal.authorities"></span>
+        <br><br>
+    </div>
+    <div>
+        <a th:href="@{/logout}">Logout</a>
+        |
+        <a th:href="@{/home}">Home Page </a>
+    </div>
+
+    <form th:action="@{/employee/search}" class="form-inline">
+        <a class="btn btn-primary btn-sm mr-5 mb-3" th:href="@{/employee/employee_save}">ADD EMPLOYEE</a>
+
+        <input class="form-control ml-5 mr-sm-2 mb-3" type="search" name="name_employee" placeholder="Search by name"/>
+
+        <button class="btn btn-success mb-3" type="submit">Search</button>
+
+    </form>
+    <br>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name Employee</th>
+            <th>Identity Card</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${listEmployee}">
+            <td th:text="*{employee.employeeId}"/>
+            <td th:text="*{employee.name_employee}"/>
+            <td th:text="*{employee.identity_card}"/>
+            <td th:text="*{employee.address}"/>
+            <td>
+                <div>
+
+                    <!-- Add "View" button/link -->
+                    <a th:href="@{/employee/employee_view/}+ ${employee.employeeId}" class="btn btn-info btn-sm"
+                       sec:authorize="hasAnyRole('ROLE_EMPLOYEE','ROLE_ADMIN')">
+
+                        View
+                    </a>
+                    <!-- Add "Update" button/link -->
+                    <a th:href="@{/employee/employee_update/}+ ${employee.employeeId}" class="btn btn-info btn-sm"
+                       sec:authorize="hasRole('ROLE_ADMIN')">
+                        Edit
+                    </a>
+                    <!-- Add "Delete" button/link -->
+                    <a th:href="@{/employee/deleteEmployee/}+ ${employee.employeeId}" class="btn btn-danger btn-sm"
+                       sec:authorize="hasRole('ROLE_ADMIN')"
+                       onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+                        Delete
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <!--Add a logout button-->
+    <!--<form action="#" th:action="@{/logout}" method="POST">-->
+
+    <!--    <input type="submit" value="Logout" class="btn btn-outline-primary mt-2">-->
+
+    <!--</form>-->
+</div>
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

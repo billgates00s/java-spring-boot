@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <title>View Category</title>
+</head>
+<body>
+
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<div class="container">
+    <h2>LIST CATEGORY</h2>
+    <p><a class="btn btn-primary" th:href="@{/category/category_save}">ADD CATEGORY</a></p>
+    <div>
+        <a th:href="@{/logout}">Logout</a>
+        |
+        <a th:href="@{/}">Home Page</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name Category</th>
+            <th>Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category : ${listCategory}">
+            <td><span th:text="*{category.categoryId}"> ID </span></td>
+            <td><span th:text="*{category.name_category}"> Name Category </span></td>
+            <td>
+                <div>
+                    <a th:href="@{/category/category_view/}+ ${category.categoryId}" class="btn btn-info btn-sm">View</a>
+
+                    <a th:href="@{/category/category_update/}+ ${category.categoryId}" class="btn btn-info btn-sm">Edit</a>
+
+                    <a th:href="@{/category/deleteCategory/}+ ${category.categoryId}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

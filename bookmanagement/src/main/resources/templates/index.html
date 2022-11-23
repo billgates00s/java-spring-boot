@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+<h1>Welcome to website book management! </h1>
+
+<!--Add a logout button-->
+<!--<form action="#" th:action="@{/logout}" method="POST">-->
+
+<!--    <input type="submit" value="Logout" class="btn btn-outline-primary mt-2">-->
+<!--</form>-->
+
+<!--<div sec:authorize="hasRole('USER')">Text visible to user.</div>-->
+<!--<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>-->
+<!--<div sec:authorize="isAuthenticated()">-->
+<!--    Text visible only to authenticated users.-->
+<!--</div>-->
+<!--Authenticated username:-->
+<!--<div sec:authentication="name"></div>-->
+<!--Authenticated user roles:-->
+<!--<div sec:authentication="principal.authorities"></div>-->
+<!--<div sec:authorize = "isAuthenticated()" style="color:red"> Authenticated as <span sec:authentication="name"></span></div>-->
+<div>
+    <label>Select Function</label>
+    <br>
+    <select id="menu" name="menu">
+        <option value="1">view user</option>
+        <option value="2">view book</option>
+        <option value="3">view category</option>
+        <option value="4">view employee</option>
+        <option value="5">view student</option>
+        <option value="6">view role</option>
+        <option value="7">view user role</option>
+        <option value="8">view Book Borrow</option>
+    </select>
+    <input type="submit" value="Submit" onclick="view();"/>
+</div>
+<script type="text/javascript">
+    function view() {
+        var x = document.getElementById("menu").value;
+        if (x == 1) {
+            window.location.href = "/admin/user_list";
+        }
+        if (x == 2) {
+            window.location.href = "/book/book_list";
+        }
+        if (x == 3) {
+            window.location.href = "/category/category_list";
+        }
+        if (x == 4) {
+            window.location.href = "/employee/employee_list";
+        }
+        if (x == 5) {
+            window.location.href = "/student/student_list";
+        }
+        if (x == 6) {
+            window.location.href = "/role/list_role";
+        }
+        if (x == 7) {
+            window.location.href = "/userRole/list_user_role";
+        }
+        if (x == 8) {
+            window.location.href = "/bookBorrow/bookBorrow_list";
+        }
+    }
+
+</script>
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+
+</body>
+
+</html>

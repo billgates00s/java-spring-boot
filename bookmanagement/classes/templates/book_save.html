@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <title>Insert Book</title>
+</head>
+
+<body>
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+<div class="container" style="margin-top: 50px;">
+    <div class="row" style="border: 1px darkgrey solid; border-radius: 10px;width: 50%; margin: 0 auto; padding: 20px;">
+        <div class="col-sm-12">
+            <p style="margin: 10px; font-size: 16px;"><a th:href="@{/book/book_list}">List Book</a></p>
+            <h1>Add New Book</h1>
+            <form th:action="@{/book/saveBook}" method="POST" th:object="${book}">
+                <div class="form-group">
+                    <label>Name Book:</label>
+                    <input type="text" class="form-control" th:field="*{name_book}" placeholder="Enter Name Book">
+                </div>
+                <div class="form-group">
+                    <label>Status Borrow:</label>
+                    <input type="text" class="form-control" th:field="*{status_borrow}" placeholder="Enter Status Borrow">
+                </div>
+                <div class="form-group">
+                    <label>Category ID:</label>
+                    <input type="text" class="form-control" th:field="*{category.categoryId}" placeholder="Enter Category ID">
+                </div>
+                <input type="submit" class="btn btn-primary" value="Submit"/>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

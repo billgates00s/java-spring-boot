@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Book</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<a th:href="@{/book/book_list}">List Book</a><br/>
+<h1>Edit Book:</h1>
+<form th:action="@{/book/updateBook}" method="PUT" th:object="${book}">
+    Id: <input th:field="*{bookId}" readonly="true"/> <br/> <br/>
+    Name Book: <input th:field="*{name_book}"/> <br/> <br/>
+    Status Borrow: <input th:field="*{status_borrow}"/> <br/> <br/>
+    Category ID: <input th:field="*{category.categoryId}"/> <br/> <br/>
+    <input type="submit" value="Submit"/>
+</form>
+
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

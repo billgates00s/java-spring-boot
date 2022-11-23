@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <title>User Role</title>
+</head>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+<body>
+
+<div class="container">
+    <h2>List User Role</h2>
+    <p><a class="btn btn-primary" th:href="@{/userRole/user_role_save}">ADD User ROLE</a></p>
+    <div>
+        <a th:href="@{/logout}">Logout</a>
+        |
+        <a href="/">Home Page</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>UserID</th>
+            <th>UserName</th>
+            <th>RoleID</th>
+            <th>RoleName</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="userRole : ${listUserRole}">
+            <td><span th:text="*{userRole.id}"> ID </span></td>
+            <td><span th:text="*{userRole.user.userId}"> UserID </span></td>
+            <td><span th:text="*{userRole.user.user_name}"> User Name </span></td>
+            <td><span th:text="*{userRole.role.roleId}"> RoleID </span></td>
+            <td><span th:text="*{userRole.role.role_name}"> Role Name </span></td>
+            <td>
+                <div>
+                    <a th:href="@{/userRole/user_role_view/}+ ${userRole.id}" class="btn btn-info btn-sm">View</a>
+
+                    <a th:href="@{/userRole/user_role_update/}+ ${userRole.id}" class="btn btn-info btn-sm">Edit</a>
+
+                    <a th:href="@{/userRole/deleteUserRole/}+ ${userRole.id}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+<th:block th:include="/_footer"></th:block>
+</html>

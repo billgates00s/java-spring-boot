@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhan Nguyen</title>
+</head>
+<body>
+
+<h1 th:utext="#{nhan.hello}"></h1>
+<h1 th:utext="#{home.today}"></h1>
+<h2>Nhan Nguyen Profile</h2>
+
+<ul>
+    <!--Duyệt qua toàn bộ phần tử trong biến "lodaProfile"-->
+    <li th:each="info : ${nhanProfile}">
+        <!--Với mỗi phần tử, lấy ra key và value-->
+        <span th:text="*{info.key}"></span> : <span th:text="*{info.value}"></span>
+    </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <title>User</title>
+</head>
+<th:block th:include="/_header"></th:block>
+<th:block th:include="/_menu"></th:block>
+<body>
+
+<div class="container">
+    <h2>List User</h2>
+    <p><a class="btn btn-primary" th:href="@{/admin/register_user}">ADD USER</a></p>
+    <div>
+        <a th:href="@{/logout}">Logout</a>
+        |
+        <a href="/">Home Page</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>UserName</th>
+            <th>Password</th>
+            <th>Active</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${listUser}">
+            <td><span th:text="*{user.userId}"> ID </span></td>
+            <td><span th:text="*{user.user_name}"> UserName </span></td>
+            <td><span th:text="*{user.pass_word}"> Password </span></td>
+            <td><span th:text="*{user.active}"> Active </span></td>
+            <td>
+                <div>
+                    <a th:href="@{/admin/user_view/}+ ${user.userId}" class="btn btn-info btn-sm">View</a>
+
+                    <a th:href="@{/admin/user_update/}+ ${user.userId}" class="btn btn-info btn-sm">Edit</a>
+
+                    <a th:href="@{/admin/deleteUser/}+ ${user.userId}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+<th:block th:include="/_footer"></th:block>
+</html>
