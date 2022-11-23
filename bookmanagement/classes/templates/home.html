@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <link rel="stylesheet"  href="/css/styles.css">
+    </head>
+
+    <body>
+        <header>
+            <th:block th:include="/_header"></th:block>
+            <th:block th:include="/_menu"></th:block>
+        </header>
+
+        <h1>
+            <p style="color: black" th:text="${home}"></p>
+        </h1>
+
+
+
+        <footer>
+            <th:block th:include="/_footer"></th:block>
+        </footer>
+    </body>
+
+</html>

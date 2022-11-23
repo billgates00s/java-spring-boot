@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Update User Role</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<a th:href="@{/userRole/list_user_role}">List User Role</a><br/>
+<h1>Edit Role:</h1>
+<form th:action="@{/userRole/updateUserRole}" method="PUT" th:object="${userRole}">
+    Id: <input th:field="*{id}" readonly="true"/> <br/> <br/>
+    UserID: <input th:field="*{user.userId}"/> <br/> <br/>
+    RoleID: <input th:field="*{role.roleId}"/> <br/> <br/>
+    <input type="submit" value="Submit"/>
+</form>
+
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

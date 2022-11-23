@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Employee Detail</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<a th:href="@{/employee/employee_list}">List Employee</a>
+<br/> <br/>
+
+<table>
+    <tr>
+        <td>Id:</td>
+        <td><p th:text="${employee.employeeId}"/></td>
+    </tr>
+    <tr>
+        <td>Name Employee:</td>
+        <td><p th:text="${employee.name_employee}"/></td>
+    </tr>
+    <tr>
+        <td>Identity Card:</td>
+        <td><p th:text="${employee.identity_card}"/></td>
+    </tr>
+    <tr>
+        <td>Address:</td>
+        <td><p th:text="${employee.address}"/></td>
+    </tr>
+</table>
+
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+</html>

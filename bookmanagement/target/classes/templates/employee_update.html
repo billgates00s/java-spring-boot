@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Update Employee</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<a th:href="@{/employee/employee_list}">List Employee</a><br/>
+<h1>Edit Book:</h1>
+<form th:action="@{/employee/updateEmployee}" method="PUT" th:object="${employee}">
+    Id: <input th:field="*{employeeId}" readonly="true"/> <br/> <br/>
+    Name Employee: <input th:field="*{name_employee}"/> <br/> <br/>
+    Identity Card: <input th:field="*{identity_card}"/> <br/> <br/>
+    Address: <input th:field="*{address}"/> <br/> <br/>
+    <input type="submit" value="Submit"/>
+</form>
+
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

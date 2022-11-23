@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Update Book Borrow</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<a th:href="@{/bookBorrow/bookBorrow_list}">List Book</a><br/>
+<h1>Edit Book:</h1>
+<form th:action="@{/bookBorrow/updateBookBorrow}" method="PUT" th:object="${bookBorrow}">
+    Id: <input th:field="*{id}" readonly="true"/> <br/> <br/>
+    Book ID: <input th:field="*{book.bookId}"/> <br/> <br/>
+    Employee ID: <input th:field="*{employee.employeeId}"/> <br/> <br/>
+    Student ID: <input th:field="*{student.studentId}"/> <br/> <br/>
+    Date Borrow: <input th:field="*{date_borrow}"/> <br/> <br/>
+    Date Back: <input th:field="*{date_back}"/> <br/> <br/>
+    <input type="submit" value="Submit"/>
+</form>
+
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

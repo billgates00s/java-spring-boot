@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>View category</title>
+</head>
+<body>
+
+<div class="container">
+    <h2>CATEGORY</h2>
+    <p><a class="btn btn-primary" href="/admin/category/insertCategory">ADD CATEGORY</a></p>
+    <p><label th:text=" 'Hello:  '+ ${session.USERNAME}"></label></p>
+    <p><a href="/admin/logout">Logout</a></p>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name Category</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="categories : ${CATEGORIES}">
+            <td><span th:text="*{categories.id}"> ID </span></td>
+            <td><span th:text="*{categories.name_category}"> Name Category </span></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+</body>
+</html>

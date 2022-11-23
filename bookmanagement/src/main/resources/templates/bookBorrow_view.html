@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Book Borrow Detail</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+<!--    <style>-->
+<!--html{-->
+<!--    width:100%;-->
+<!--    height:100%;-->
+<!--}-->
+<!--body{-->
+<!--    width:100%;-->
+<!--    height:100%;-->
+
+<!--}-->
+
+<!--    </style>-->
+</head>
+
+<body>
+
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<a th:href="@{/bookBorrow/bookBorrow_list}">List Book Borrow</a>
+<br/> <br/>
+
+<table>
+    <tr>
+        <td>Id:</td>
+        <td><p th:text="${bookBorrow.id}"/></td>
+    </tr>
+    <tr>
+        <td>Book ID:</td>
+        <td><p th:text="${bookBorrow.book.bookId}"/></td>
+    </tr>
+    <tr>
+        <td>Employee ID:</td>
+        <td><p th:text="${bookBorrow.employee.employeeId}"/></td>
+    </tr>
+    <tr>
+        <td>Student ID:</td>
+        <td><p th:text="${bookBorrow.student.studentId}"/></td>
+    </tr>
+    <tr>
+        <td>Date Borrow:</td>
+        <td><p th:text="${bookBorrow.date_borrow}"/></td>
+    </tr>
+    <tr>
+        <td>Date Back:</td>
+        <td><p th:text="${bookBorrow.date_back}"/></td>
+    </tr>
+</table>
+
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+</html>

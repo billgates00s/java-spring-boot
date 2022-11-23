@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Update Book</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<a th:href="@{/category/category_list}">List Category</a><br/>
+<h1>Edit Book:</h1>
+<form th:action="@{/category/updateCategory}" method="PUT" th:object="${category}">
+    Category Id: <input th:field="*{categoryId}" readonly="true"/> <br/> <br/>
+    Name Category: <input th:field="*{name_category}"/> <br/> <br/>
+    <input type="submit" value="Submit"/>
+</form>
+
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

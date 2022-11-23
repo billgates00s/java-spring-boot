@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <title>List Book Borrow</title>
+</head>
+<body>
+
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<div class="container">
+    <h2>LIST BOOK Borrow</h2>
+    <p><a class="btn btn-primary" th:href="@{/bookBorrow/bookBorrow_save}">ADD BOOK Borrow</a></p>
+    <div>
+        <a th:href="@{/logout}">Logout</a>
+        |
+        <a th:href="@{/}">Home Page</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Book ID</th>
+            <th>Student ID</th>
+            <th>Employee ID</th>
+            <th>Date Borrow</th>
+            <th>Date Back</th>
+            <th>Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bookBorrow : ${listBookBorrow}">
+            <td><span th:text="*{bookBorrow.id}"> ID </span></td>
+            <td><span th:text="*{bookBorrow.book.bookId}"> Book ID </span></td>
+            <td><span th:text="*{bookBorrow.employee.employeeId}"> Employee ID </span></td>
+            <td><span th:text="*{bookBorrow.student.studentId}"> Student ID </span></td>
+            <td><span th:text="*{bookBorrow.date_borrow}"> Date Borrow </span></td>
+            <td><span th:text="*{bookBorrow.date_back}"> Date Back </span></td>
+            <td>
+                <div>
+                    <a th:href="@{/bookBorrow/bookBorrow_view/}+ ${bookBorrow.id}" class="btn btn-info btn-sm">View</a>
+
+                    <a th:href="@{/bookBorrow/bookBorrow_update/}+ ${bookBorrow.id}" class="btn btn-info btn-sm">Edit</a>
+
+                    <a th:href="@{/bookBorrow/deleteBookBorrow/}+ ${bookBorrow.id}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

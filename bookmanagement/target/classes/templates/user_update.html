@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Update User</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<a th:href="@{/admin/user_list}">List User</a><br/>
+<h1>Edit Book:</h1>
+<form th:action="@{/admin/updateUser}" method="PUT" th:object="${user}">
+    ID: <input th:field="*{userId}" readonly="true"/> <br/> <br/>
+    Username: <input th:field="*{user_name}" /> <br/> <br/>
+    Password: <input th:field="*{pass_word}"/> <br/> <br/>
+    Active: <input th:field="*{active}"/> <br/> <br/>
+    <input type="submit" value="Submit"/>
+</form>
+
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

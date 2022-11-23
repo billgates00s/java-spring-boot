@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <title>List Student</title>
+</head>
+<body>
+
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<div class="container">
+    <h2>LIST STUDENT</h2>
+    <p><a class="btn btn-primary" th:href="@{/student/student_save}">ADD STUDENT</a></p>
+    <div>
+        <a th:href="@{/logout}">Logout</a>
+        |
+        <a th:href="@{/}">Home Page</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name Student</th>
+            <th>Identity Card</th>
+            <th>Address</th>
+            <th>Date Of Birth</th>
+            <th>Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${listStudent}">
+            <td><span th:text="*{student.studentId}"> ID </span></td>
+            <td><span th:text="*{student.name_student}"> Name Student </span></td>
+            <td><span th:text="*{student.identity_card}"> Identity Card </span></td>
+            <td><span th:text="*{student.address}"> Address</span></td>
+            <td><span th:text="*{student.birth_date}"> Date Of Birth</span></td>
+            <td>
+                <div>
+                    <a th:href="@{/student/student_view/}+ ${student.studentId}" class="btn btn-info btn-sm">View</a>
+
+                    <a th:href="@{/student/student_update/}+ ${student.studentId}" class="btn btn-info btn-sm">Edit</a>
+
+                    <a th:href="@{/student/deleteStudent/}+ ${student.studentId}" class="btn btn-danger btn-sm">Delete</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+
+</html>

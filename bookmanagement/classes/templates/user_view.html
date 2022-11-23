@@ -1,0 +1,43 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>User Detail</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+
+
+</head>
+
+<body>
+
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
+
+<a th:href="@{/admin/user_list}">List User</a>
+<br/> <br/>
+
+<table>
+    <tr>
+        <td>Username:</td>
+        <td><p th:text="${user.userId}"/></td>
+    </tr>
+    <tr>
+        <td>Username:</td>
+        <td><p th:text="${user.user_name}"/></td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td><p th:text="${user.pass_word}"/></td>
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <td><p th:text="${user.active}"/></td>
+    </tr>
+</table>
+
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
+</html>
