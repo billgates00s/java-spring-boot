@@ -12,7 +12,7 @@
     <th:block th:include="/_menu"></th:block>
 </header>
 
-<a th:href="@{/role/role_list}">List Role</a><br/>
+<a th:href="@{/role/list_role}">List Role</a><br/>
 <h1>Edit Role:</h1>
 <form th:action="@{/role/updateRole}" method="PUT" th:object="${role}">
     Id: <input th:field="*{roleId}" readonly="true"/> <br/> <br/>

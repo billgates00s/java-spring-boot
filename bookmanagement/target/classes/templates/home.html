@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Login</title>
-        <link rel="stylesheet"  href="/css/styles.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Book Management</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
 
-    <body>
-        <header>
-            <th:block th:include="/_header"></th:block>
-            <th:block th:include="/_menu"></th:block>
-        </header>
+<body>
+<header>
+    <th:block th:include="/_header"></th:block>
+    <th:block th:include="/_menu"></th:block>
+</header>
 
-        <h1>
-            <p style="color: black" th:text="${home}"></p>
-        </h1>
+<main class="animate-fade">
+    <section class="hero-page glass" style="padding: 4rem; border-radius: 2rem; text-align: center;">
+        <i class="fa-solid fa-house-chimney" style="font-size: 4rem; color: var(--primary); margin-bottom: 2rem;"></i>
+        <h1 style="margin-bottom: 1.5rem;">System Overview</h1>
+        <div class="welcome-message" style="font-size: 1.25rem;">
+            <p th:text="${home}" style="color: var(--text-main); font-weight: 500;"></p>
+        </div>
+        <p style="margin-top: 2rem; color: var(--text-muted); max-width: 600px; margin-left: auto; margin-right: auto;">
+            Welcome back to the portal. Access all your data using the management links in the navigation bar or the cards on the main dashboard.
+        </p>
+        <div style="margin-top: 3rem;">
+            <a th:href="@{/}" class="glass" style="padding: 1rem 2rem; border-radius: 1rem; color: white; text-decoration: none; font-weight: 600; background: var(--primary); transition: all 0.3s ease; display: inline-block;">
+                Go to Dashboard
+            </a>
+        </div>
+    </section>
+</main>
 
-
-
-        <footer>
-            <th:block th:include="/_footer"></th:block>
-        </footer>
-    </body>
-
+<footer>
+    <th:block th:include="/_footer"></th:block>
+</footer>
+</body>
 </html>
