@@ -3,53 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký | HC SHOP</title>
+    <title>HCSHOP ADMIN | Đăng ký</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body>
-<header>
-    <th:block th:include="/_header"></th:block>
-    <th:block th:include="/_menu"></th:block>
-</header>
+<body class="auth-body">
 
-<main class="auth-page">
-    <div class="auth-container">
-        <div class="auth-header">
-            <h1>Tạo tài khoản mới</h1>
-            <p>Tham gia cùng HC SHOP để nhận nhiều ưu đãi</p>
+<div class="login-card animate-fade">
+    <h1>HCSHOP ADMIN</h1>
+    <p>Tạo tài khoản quản trị mới</p>
+
+    <form th:action="@{/register_user}" method="POST">
+        
+        <div class="form-group">
+            <input type="text" id="username" name="user_name" placeholder="Tên đăng nhập" required>
         </div>
 
-        <form th:action="@{/register_user}" method="POST">
-            
-            <div class="form-group">
-                <label for="username">Tên đăng nhập</label>
-                <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" required>
-            </div>
+        <div class="form-group">
+            <input type="password" id="password" name="pass_word" placeholder="Mật khẩu" required>
+        </div>
 
-            <div class="form-group">
-                <label for="password">Mật khẩu</label>
-                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
-            </div>
-
-            <div class="form-group">
-                <label for="confirm-password">Xác nhận mật khẩu</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Nhập lại mật khẩu" required>
-            </div>
-
-            <button type="submit" class="auth-btn">ĐĂNG KÝ</button>
-            
-            <div class="auth-footer">
+        <button type="submit">Đăng ký ngay</button>
+        
+        <div class="footer-info">
+            <p>&copy; 2026 SmashShop. All rights reserved.</p>
+            <p style="margin-top: 10px;">
                 Đã có tài khoản? <a th:href="@{/login}">Đăng nhập ngay</a>
-            </div>
-        </form>
-    </div>
-</main>
-
-<footer>
-    <th:block th:include="/_footer"></th:block>
-</footer>
+            </p>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

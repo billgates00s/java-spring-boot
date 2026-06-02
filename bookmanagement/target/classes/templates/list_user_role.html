@@ -34,12 +34,12 @@
                     <tr th:each="userRole : ${listUserRole}">
                         <td style="vertical-align: middle;"><span th:text="${userRole.id}"> ID </span></td>
                         <td style="vertical-align: middle;"><span th:text="${userRole.user.user_name}" style="font-weight: 600;"> User </span></td>
-                        <td style="vertical-align: middle;"><span th:text="${userRole.role.name_role}" class="badge" style="background-color: #f1c40f; color: #333;"> Role </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${userRole.role.role_name}" class="badge" style="background-color: #f1c40f; color: #333;"> Role </span></td>
                         <td style="text-align: center; vertical-align: middle;">
                             <div class="btn-group">
-                                <a th:href="@{/userRole/user_role_view/}+ ${userRole.id}" class="btn btn-info btn-sm">View</a>
-                                <a th:href="@{/userRole/user_role_update/}+ ${userRole.id}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Edit</a>
-                                <a th:href="@{/userRole/deleteUserRole/}+ ${userRole.id}" class="btn btn-danger btn-sm">Delete</a>
+                                <a th:href="@{'/userRole/user_role_view/' + ${userRole.id}}" class="btn btn-info btn-sm">View</a>
+                                <a th:href="@{'/userRole/user_role_update/' + ${userRole.id}}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Edit</a>
+                                <a th:href="@{'/userRole/deleteUserRole/' + ${userRole.id}}" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                         </td>
                     </tr>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HC Book | Home</title>
+    <title>HC BOOK | Hệ thống quản lý Sách</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -12,7 +12,9 @@
 <body>
     <header>
         <th:block th:include="/_header"></th:block>
-        <th:block th:include="/_menu"></th:block>
+        <div class="nav-bar">
+            <th:block th:include="/_menu"></th:block>
+        </div>
     </header>
 
     <main class="home-main">
@@ -22,8 +24,6 @@
                 <div class="carousel-item active">
                     <img th:src="@{/badminton_hero_banner.png}" alt="Badminton Hero">
                 </div>
-                <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
             </div>
 
             <!-- Floating Support Button -->
@@ -35,28 +35,53 @@
         </section>
 
         <!-- Categories Section -->
-        <section class="category-section" th:if="${listCategory != null}">
+        <section class="category-section">
             <div class="section-title">DANH MỤC</div>
             <div class="category-grid">
-                <div class="category-card" th:each="category : ${listCategory}">
-                    <i class="fas fa-folder" style="font-size: 50px; color: #4682b4; margin: 15px 0;"></i>
-                    <span th:text="${category.name_category}">Tên danh mục</span>
+                <div class="category-card">
+                    <img th:src="@{/badminton_racket.png}" alt="Vợt">
+                    <span>Vợt cầu lông</span>
+                </div>
+                <div class="category-card">
+                    <img th:src="@{/badminton_racket.png}" alt="Quấn cán" style="filter: hue-rotate(90deg);">
+                    <span>Quấn cán vợt</span>
+                </div>
+                <div class="category-card">
+                    <!-- Assuming there's a shoe image or placeholder -->
+                    <i class="fas fa-shoe-prints" style="font-size: 50px; color: #3498db; margin: 15px 0;"></i>
+                    <span>Giày cầu lông</span>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-briefcase" style="font-size: 50px; color: #3498db; margin: 15px 0;"></i>
+                    <span>Túi cầu lông</span>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-th" style="font-size: 50px; color: #3498db; margin: 15px 0;"></i>
+                    <span>Lưới cầu lông</span>
                 </div>
             </div>
         </section>
 
         <!-- Product Subsections -->
         <section class="product-section">
-            <!-- New Products -->
+            <!-- New Products Section -->
             <div class="subsection">
                 <div class="subsection-header">
                     Sách mới
-                    <a href="#">Xem tất cả ></a>
+                    <a href="#">Xem thêm &rarr;</a>
                 </div>
                 <div class="product-grid">
-                    <!-- Product 1 -->
                     <div class="product-card">
-                        <img th:src="@{/vn-11134258-81ztc-momw6akl6v4ef3.png}" class="product-badge">
+                        <span class="product-badge">10%</span>
+                        <i class="far fa-heart product-wishlist"></i>
+                        <img th:src="@{/badminton_racket.png}" class="product-img">
+                        <div class="product-info">
+                            <h3>Yonex Women's Power Cushion Sonicage 3</h3>
+                            <p class="product-price">2,375,000đ</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="product-badge">15%</span>
                         <i class="far fa-heart product-wishlist"></i>
                         <img th:src="@{/tam-li-hoc-ve-tien.jpg}" class="product-img">
                         <div class="product-info">
@@ -64,49 +89,46 @@
                             <p class="product-price">189,000đ</p>
                         </div>
                     </div>
-                    <!-- Product 2 -->
                     <div class="product-card">
+                        <span class="product-badge">Hot</span>
+                        <i class="far fa-heart product-wishlist"></i>
                         <img th:src="@{/badminton_racket.png}" class="product-img">
                         <div class="product-info">
-                            <h3>Vợt Cầu Lông Yonex NanoRay 10F</h3>
-                            <p class="product-price">1,250,000đ</p>
+                            <h3>Victor Bravesword 12 SE</h3>
+                            <p class="product-price">4,275,000đ</p>
                         </div>
                     </div>
-                    <!-- Product 3 -->
                     <div class="product-card">
-                        <img th:src="@{/tam-li-hoc-ve-tien.jpg}" class="product-img">
-                        <div class="product-info">
-                            <h3>Combo Sách Đầu Tư Tài Chính</h3>
-                            <p class="product-price">450,000đ</p>
-                        </div>
-                    </div>
-                    <!-- Product 4 -->
-                    <div class="product-card">
+                        <span class="product-badge">New</span>
+                        <i class="far fa-heart product-wishlist"></i>
                         <img th:src="@{/badminton_racket.png}" class="product-img">
                         <div class="product-info">
-                            <h3>Vợt Victor Thruster K 220H</h3>
-                            <p class="product-price">2,150,000đ</p>
+                            <h3>Yonex Astrox 7DG</h3>
+                            <p class="product-price">1,840,000đ</p>
                         </div>
                     </div>
-                    <!-- Product 5 -->
                     <div class="product-card">
+                        <span class="product-badge">5%</span>
+                        <i class="far fa-heart product-wishlist"></i>
                         <img th:src="@{/tam-li-hoc-ve-tien.jpg}" class="product-img">
                         <div class="product-info">
-                            <h3>Sách: Cha Giàu Cha Nghèo</h3>
-                            <p class="product-price">120,000đ</p>
+                            <h3>Combo Sách Đầu Tư Tài Chính mới</h3>
+                            <p class="product-price">2,850,000đ</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Featured Section 2: Vợt cầu lông -->
+            <!-- Racket Section -->
             <div class="subsection">
                 <div class="subsection-header">
                     Vợt cầu lông
-                    <a href="#">Xem tất cả ></a>
+                    <a href="#">Xem thêm &rarr;</a>
                 </div>
                 <div class="product-grid">
                     <div class="product-card" th:each="i : ${#numbers.sequence(1, 5)}">
+                        <span class="product-badge">Hot</span>
+                        <i class="far fa-heart product-wishlist"></i>
                         <img th:src="@{/badminton_racket.png}" class="product-img">
                         <div class="product-info">
                             <h3>Vợt Yonex Astrox Next Gen</h3>
@@ -116,14 +138,15 @@
                 </div>
             </div>
 
-            <!-- Featured Section 3: Sách bán chạy -->
+            <!-- Books Section -->
             <div class="subsection">
                 <div class="subsection-header" style="background-color: #3498db;">
                     Sách bán chạy
-                    <a href="#">Xem tất cả ></a>
+                    <a href="#">Xem thêm &rarr;</a>
                 </div>
                 <div class="product-grid">
                     <div class="product-card" th:each="i : ${#numbers.sequence(1, 5)}">
+                        <i class="far fa-heart product-wishlist"></i>
                         <img th:src="@{/tam-li-hoc-ve-tien.jpg}" class="product-img">
                         <div class="product-info">
                             <h3>Tâm lý học về tiền</h3>

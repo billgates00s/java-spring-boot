@@ -32,12 +32,12 @@
                     <tbody>
                     <tr th:each="role : ${listRole}">
                         <td style="vertical-align: middle;"><span th:text="${role.roleId}"> ID </span></td>
-                        <td style="vertical-align: middle;"><span th:text="${role.name_role}" style="font-weight: 600;"> Name </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${role.role_name}" style="font-weight: 600;"> Name </span></td>
                         <td style="text-align: center; vertical-align: middle;">
                             <div class="btn-group">
-                                <a th:href="@{/role/role_view/}+ ${role.roleId}" class="btn btn-info btn-sm">View</a>
-                                <a th:href="@{/role/role_update/}+ ${role.roleId}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Edit</a>
-                                <a th:href="@{/role/deleteRole/}+ ${role.roleId}" class="btn btn-danger btn-sm">Delete</a>
+                                <a th:href="@{'/role/role_view/' + ${role.roleId}}" class="btn btn-info btn-sm">View</a>
+                                <a th:href="@{'/role/role_update/' + ${role.roleId}}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Edit</a>
+                                <a th:href="@{'/role/deleteRole/' + ${role.roleId}}" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                         </td>
                     </tr>

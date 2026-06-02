@@ -1,15 +1,15 @@
 <nav class="main-nav" xmlns:th="http://www.thymeleaf.org">
-    <div class="nav-links">
+    <div class="nav-links" style="display: flex; gap: 40px; justify-content: center; width: 100%;">
         <a th:href="@{/}" class="nav-item active">TRANG CHỦ</a>
-        <div class="nav-item has-dropdown">
-            <a href="#">SÁCH <i class="fas fa-caret-down"></i></a>
-            <div class="dropdown-menu">
-                <a th:each="cat : ${allCategories}" 
-                   th:href="@{/category/view(id=${cat.categoryId})}" 
-                   th:text="${cat.name_category}" 
-                   class="dropdown-item">Tên danh mục</a>
-            </div>
+
+        <div class="nav-item has-dropdown"
+            style="position: relative; display: flex; align-items: center; cursor: pointer;">
+            <span style="color: white; font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">
+                SÁCH <i class="fas fa-caret-down" style="font-size: 10px; margin-left: 3px;"></i>
+            </span>
+            <!-- No actual dropdown needed for the visual redesign request, but keep placeholder structure if wanted -->
         </div>
+
         <a href="#" class="nav-item">HƯỚNG DẪN / REVIEW</a>
         <a href="#" class="nav-item">VỀ CHÚNG TÔI</a>
     </div>

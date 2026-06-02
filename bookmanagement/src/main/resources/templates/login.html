@@ -4,63 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập | HC SHOP</title>
+    <title>HCSHOP ADMIN | Login</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body>
-<header>
-    <th:block th:include="/_header"></th:block>
-    <th:block th:include="/_menu"></th:block>
-</header>
+<body class="auth-body">
 
-<main class="auth-page">
-    <div class="auth-container">
-        <div class="auth-header">
-            <h1>Chào mừng quay trở lại!</h1>
-            <p>Vui lòng đăng nhập vào tài khoản của bạn</p>
+<div class="login-card animate-fade">
+    <h1>HCSHOP ADMIN</h1>
+    <p>Vui lòng đăng nhập để tiếp tục</p>
+
+    <form th:action="@{/j_spring_security_check}" method="POST">
+        
+        <div th:if="${param.error}" style="color: #ff5252; margin-bottom: 15px; font-size: 0.9rem;">
+            Sai tên đăng nhập hoặc mật khẩu
         </div>
 
-        <form th:action="@{/j_spring_security_check}" method="POST">
-            
-            <div th:if="${param.error}" style="background: #fff5f5; border-left: 4px solid #e74c3c; color: #c0392b; padding: 12px; margin-bottom: 20px; font-size: 14px;">
-                Tên đăng nhập hoặc mật khẩu không chính xác.
-            </div>
+        <div class="form-group">
+            <input type="text" id="username" name="username" placeholder="Email quản trị" required autofocus>
+        </div>
 
-            <div th:if="${param.logout}" style="background: #f0fff4; border-left: 4px solid #2ecc71; color: #27ae60; padding: 12px; margin-bottom: 20px; font-size: 14px;">
-                Bạn đã đăng xuất thành công.
-            </div>
+        <div class="form-group">
+            <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+        </div>
 
-            <div class="form-group">
-                <label for="username">Tên đăng nhập</label>
-                <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" required>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Mật khẩu</label>
-                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
-            </div>
-
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 14px;">
-                <label style="display: flex; align-items: center; gap: 8px; color: #666; cursor: pointer;">
-                    <input type="checkbox" id="remember-me" name="remember-me"> Ghi nhớ tôi
-                </label>
-                <a href="#" style="color: #4682b4; text-decoration: none;">Quên mật khẩu?</a>
-            </div>
-
-            <button type="submit" class="auth-btn">ĐĂNG NHẬP</button>
-            
-            <div class="auth-footer">
+        <button type="submit">Đăng nhập ngay</button>
+        
+        <div class="footer-info">
+            <p>&copy; 2026 SmashShop. All rights reserved.</p>
+            <p style="margin-top: 10px;">
                 Chưa có tài khoản? <a th:href="@{/register_user}">Đăng ký ngay</a>
-            </div>
-        </form>
-    </div>
-</main>
-
-<footer>
-    <th:block th:include="/_footer"></th:block>
-</footer>
+            </p>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

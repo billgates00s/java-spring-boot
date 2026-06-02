@@ -26,22 +26,22 @@
                     <tr>
                         <th>ID</th>
                         <th>Name Employee</th>
-                        <th>Gender</th>
+                        <th>Identity Card</th>
                         <th>Address</th>
                         <th style="text-align: center;">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="employee : ${listEmployee}">
-                        <td style="vertical-align: middle;"><span th:text="${employee.employee_id}"> ID </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${employee.employeeId}"> ID </span></td>
                         <td style="vertical-align: middle;"><span th:text="${employee.name_employee}" style="font-weight: 600;"> Name </span></td>
-                        <td style="vertical-align: middle;"><span th:text="${employee.gender}"> Gender </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${employee.identity_card}"> Identity Card </span></td>
                         <td style="vertical-align: middle;"><span th:text="${employee.address}"> Address </span></td>
                         <td style="text-align: center; vertical-align: middle;">
                             <div class="btn-group">
-                                <a th:href="@{/employee/employee_view/}+ ${employee.employee_id}" class="btn btn-info btn-sm">View</a>
-                                <a th:href="@{/employee/employee_update/}+ ${employee.employee_id}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Edit</a>
-                                <a th:href="@{/employee/deleteEmployee/}+ ${employee.employee_id}" class="btn btn-danger btn-sm">Delete</a>
+                                <a th:href="@{'/employee/employee_view/' + ${employee.employeeId}}" class="btn btn-info btn-sm">View</a>
+                                <a th:href="@{'/employee/employee_update/' + ${employee.employeeId}}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Edit</a>
+                                <a th:href="@{'/employee/deleteEmployee/' + ${employee.employeeId}}" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                         </td>
                     </tr>

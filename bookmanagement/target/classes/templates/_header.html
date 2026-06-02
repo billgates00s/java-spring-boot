@@ -1,50 +1,49 @@
 <div class="header-top" xmlns:th="http://www.thymeleaf.org">
-    <div class="logo-container">
+    <div class="logo">
         <a th:href="@{/}">
-            <div class="hc-logo">
-                <i class="fas fa-laptop"></i>
-                <span>HC Book</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div
+                    style="background: white; color: #3498db; padding: 5px 10px; border-radius: 5px; font-weight: 900; font-size: 1.5rem;">
+                    HC</div>
+                <div style="color: white; font-weight: 900; font-size: 1.5rem; letter-spacing: -1px;">BOOK</div>
             </div>
         </a>
     </div>
 
-    <div class="search-container">
-        <form action="#" method="get">
-            <input type="text" placeholder="Tìm kiếm thương hiệu, sản phẩm...">
+    <div class="search-bar">
+        <form th:action="@{/search}" method="get" style="display: flex; width: 100%;">
+            <input type="text" name="keyword" placeholder="Tìm kiếm thương hiệu, sản phẩm...">
             <button type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
 
-    <div class="header-actions">
-        <div class="action-item">
-            <i class="fas fa-phone"></i>
-            <span>0776856066</span>
-        </div>
-        
-        <!-- Account Dropdown -->
-        <div class="action-item account-dropdown">
-            <div class="dropdown-trigger">
-                <i class="fas fa-user" th:if="${#request.userPrincipal == null}"></i>
-                <i class="fas fa-user-check" th:if="${#request.userPrincipal != null}"></i>
-                <span th:text="${#request.userPrincipal == null ? 'Tài Khoản' : #request.userPrincipal.name}">Tài Khoản</span>
-            </div>
-            <div class="dropdown-menu">
+    <div class="header-icons">
+        <span>
+            <i class="fas fa-phone-alt"></i>
+            <strong>0776856066</strong>
+        </span>
+
+        <div class="account-btn">
+            <i class="fas fa-user-circle"></i>
+            <span th:text="${#request.userPrincipal == null ? 'Tài Khoản' : #request.userPrincipal.name}">Tài
+                Khoản</span>
+
+            <div class="account-dropdown-content">
                 <th:block th:if="${#request.userPrincipal == null}">
-                    <a th:href="@{/login}" class="dropdown-item">Đăng nhập</a>
-                    <a th:href="@{/register_user}" class="dropdown-item">Đăng ký</a>
+                    <a th:href="@{/login}">Đăng nhập</a>
+                    <a th:href="@{/register_user}">Đăng ký</a>
                 </th:block>
                 <th:block th:if="${#request.userPrincipal != null}">
-                    <a th:href="@{/userInfo}" class="dropdown-item">Thông tin tài khoản</a>
-                    <a th:href="@{/admin}" th:if="${#request.isUserInRole('ROLE_ADMIN')}" class="dropdown-item">Quản trị hệ thống</a>
-                    <div class="dropdown-divider"></div>
-                    <a th:href="@{/logout}" class="dropdown-item logout-item">Đăng xuất</a>
+                    <a th:href="@{/userInfo}">Thông tin tài khoản</a>
+                    <a th:href="@{/admin}" th:if="${#request.isUserInRole('ROLE_ADMIN')}">Quản trị</a>
+                    <a th:href="@{/logout}">Đăng xuất</a>
                 </th:block>
             </div>
         </div>
 
-        <div class="action-item cart">
+        <span>
             <i class="fas fa-shopping-cart"></i>
-            <span>Giỏ Hàng (0)</span>
-        </div>
+            Giỏ Hàng (0)
+        </span>
     </div>
 </div>

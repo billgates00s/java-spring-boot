@@ -26,20 +26,22 @@
                     <tr>
                         <th>ID</th>
                         <th>Name Student</th>
-                        <th>Hobby</th>
+                        <th>Identity Card</th>
+                        <th>Address</th>
                         <th style="text-align: center;">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="student : ${listStudent}">
-                        <td style="vertical-align: middle;"><span th:text="${student.id}"> ID </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${student.studentId}"> ID </span></td>
                         <td style="vertical-align: middle;"><span th:text="${student.name_student}" style="font-weight: 600;"> Name </span></td>
-                        <td style="vertical-align: middle;"><span th:text="${student.hobby}"> Hobby </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${student.identity_card}"> Identity Card </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${student.address}"> Address </span></td>
                         <td style="text-align: center; vertical-align: middle;">
                             <div class="btn-group">
-                                <a th:href="@{/student/student_view/}+ ${student.id}" class="btn btn-info btn-sm">View</a>
-                                <a th:href="@{/student/student_update/}+ ${student.id}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Edit</a>
-                                <a th:href="@{/student/deleteStudent/}+ ${student.id}" class="btn btn-danger btn-sm">Delete</a>
+                                <a th:href="@{'/student/student_view/' + ${student.studentId}}" class="btn btn-info btn-sm">View</a>
+                                <a th:href="@{'/student/student_update/' + ${student.studentId}}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Edit</a>
+                                <a th:href="@{'/student/deleteStudent/' + ${student.studentId}}" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                         </td>
                     </tr>

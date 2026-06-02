@@ -55,9 +55,9 @@
                         </td>
                         <td style="text-align: center; vertical-align: middle;">
                             <div class="btn-group">
-                                <a th:href="@{/book/book_view/}+ ${book.bookId}" class="btn btn-info btn-sm">Xem</a>
-                                <a th:href="@{/book/book_update/}+ ${book.bookId}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Sửa</a>
-                                <a th:href="@{/book/deleteBook/}+ ${book.bookId}" class="btn btn-danger btn-sm">Xóa</a>
+                                <a th:href="@{'/book/book_view/' + ${book.bookId}}" class="btn btn-info btn-sm">Xem</a>
+                                <a th:href="@{'/book/book_update/' + ${book.bookId}}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Sửa</a>
+                                <a th:href="@{'/book/deleteBook/' + ${book.bookId}}" class="btn btn-danger btn-sm">Xóa</a>
                             </div>
                         </td>
                     </tr>

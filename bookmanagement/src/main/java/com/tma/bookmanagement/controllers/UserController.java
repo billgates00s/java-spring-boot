@@ -96,27 +96,11 @@ public class UserController {
 //        return "home";
 //    }
 
-    @GetMapping("/register_user")
-    public String registerUser(Model model) {
-        model.addAttribute("user", new User());
-        return "register_user";
-    }
-
-    @RequestMapping(value = "/saveUser", method = {RequestMethod.POST})
-    public String doSaveUser(@ModelAttribute User user) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        user.setPass_word(encoder.encode(user.getPass_word()));
-        userService.save(user);
-        return "redirect:/admin/user_list";
-
-    }
-
     @GetMapping("user_list")
     public String listUser(Model model) {
         model.addAttribute("listUser", userService.findAll());
         return "list_user";
     }
-
     @GetMapping("/user_view/{id}")
     public String viewUser(@PathVariable Long id, Model model) {
         Optional<User> user = userService.findById(id);
