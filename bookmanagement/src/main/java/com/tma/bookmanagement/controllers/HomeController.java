@@ -12,10 +12,15 @@ import java.security.Principal;
 
 @Controller
 public class HomeController {
-    @RequestMapping (value = {"/","/home"}, method = RequestMethod.GET)
-    public String homePage(){
+    @org.springframework.beans.factory.annotation.Autowired
+    private com.tma.bookmanagement.services.CategoryService categoryService;
+
+    @RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
+    public String homePage(Model model) {
+        model.addAttribute("listCategory", categoryService.findAll());
         return "index";
     }
+
     @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
     public String userInfo(Model model, Principal principal) {
 
@@ -31,6 +36,7 @@ public class HomeController {
 
         return "userInfoPage";
     }
+
     @RequestMapping(value = "/adminInfo", method = RequestMethod.GET)
     public String adminPage(Model model, Principal principal) {
 
@@ -41,7 +47,5 @@ public class HomeController {
 
         return "adminPage";
     }
-
-
 
 }

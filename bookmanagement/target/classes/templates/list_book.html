@@ -1,64 +1,76 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <th:block th:include="/_admin_fragments :: admin_head"></th:block>
+    <title>Sản phẩm hiện có | Admin</title>
+    <!-- Keep Bootstrap for the table only -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
-    <title>List Book</title>
 </head>
 <body>
 
-<header>
-    <th:block th:include="/_header"></th:block>
-    <th:block th:include="/_menu"></th:block>
-</header>
+    <!-- Sidebar -->
+    <div th:replace="/_admin_fragments :: admin_sidebar"></div>
 
-<div class="container">
-    <h2>LIST BOOK</h2>
-    <p><a class="btn btn-primary" th:href="@{/book/book_save}">ADD BOOK</a></p>
-    <div>
-        <a th:href="@{/logout}">Logout</a>
-        |
-        <a th:href="@{/}">Home Page</a>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div th:replace="/_admin_fragments :: admin_header"></div>
+
+        <!-- Page Body -->
+        <div class="page-container">
+            <div class="glass-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <h2 style="margin: 0; font-weight: 700; color: #333;">SẢN PHẨM HIỆN CÓ</h2>
+                    <a class="btn btn-primary" th:href="@{/book/book_save}" style="background-color: #3498db; border: none; padding: 10px 20px; font-weight: 600;">
+                        <i class="fas fa-plus"></i> THÊM SẢN PHẨM
+                    </a>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Trạng thái mượn</th>
+                        <th>Danh mục (ID)</th>
+                        <th style="text-align: center;">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="book : ${listBook}">
+                        <td style="vertical-align: middle;"><span th:text="${book.bookId}"> ID </span></td>
+                        <td style="vertical-align: middle;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-book" style="color: #4682b4;"></i>
+                                <span th:text="${book.name_book}" style="font-weight: 500;"> Name Book </span>
+                            </div>
+                        </td>
+                        <td style="vertical-align: middle;">
+                            <span th:if="${book.status_borrow == 0}" class="label label-success">Sẵn có</span>
+                            <span th:if="${book.status_borrow == 1}" class="label label-warning">Đang mượn</span>
+                        </td>
+                        <td style="vertical-align: middle;">
+                            <span th:text="${book.category.name_category}" class="badge" style="background-color: #f1c40f; color: #333;">Category</span>
+                            <small th:text="'(#' + ${book.category.categoryId} + ')'" style="color: #999; margin-left: 5px;"></small>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <div class="btn-group">
+                                <a th:href="@{/book/book_view/}+ ${book.bookId}" class="btn btn-info btn-sm">Xem</a>
+                                <a th:href="@{/book/book_update/}+ ${book.bookId}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Sửa</a>
+                                <a th:href="@{/book/deleteBook/}+ ${book.bookId}" class="btn btn-danger btn-sm">Xóa</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name Book</th>
-            <th>Status Borrow</th>
-            <th>Category ID</th>
-            <th>Action</th>
+    <!-- Chat Button -->
+    <div class="chat-button">
+        <i class="fas fa-comment-dots"></i>
+    </div>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="book : ${listBook}">
-            <td><span th:text="*{book.bookId}"> ID </span></td>
-            <td><span th:text="*{book.name_book}"> Name Book </span></td>
-            <td><span th:text="*{book.status_borrow}"> Status Borrow </span></td>
-            <td><span th:text="*{book.category.categoryId}"> Category ID </span></td>
-            <td>
-                <div>
-                    <a th:href="@{/book/book_view/}+ ${book.bookId}" class="btn btn-info btn-sm">View</a>
-
-                    <a th:href="@{/book/book_update/}+ ${book.bookId}" class="btn btn-info btn-sm">Edit</a>
-
-                    <a th:href="@{/book/deleteBook/}+ ${book.bookId}" class="btn btn-danger btn-sm">Delete</a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-</div>
-<footer>
-    <th:block th:include="/_footer"></th:block>
-</footer>
 </body>
-
 </html>

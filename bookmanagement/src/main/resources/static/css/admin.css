@@ -1,0 +1,204 @@
+:root {
+    --primary-color: #00ff00; /* Neon green from the image */
+    --bg-light: #f4f4f4;
+    --sidebar-width: 250px;
+    --header-height: 60px;
+    --text-dark: #333;
+    --header-bg: #99ccff; /* Light blue header from image */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    display: flex;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.sidebar-header {
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-dark);
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.sidebar-menu li {
+    padding: 5px 20px;
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    color: #555;
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.sidebar-menu a i {
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.sidebar-menu a:hover {
+    background-color: #f0f0f0;
+}
+
+.sidebar-menu a.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Main Content Styling */
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+.admin-header {
+    height: var(--header-height);
+    background-color: var(--header-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.header-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.header-icon {
+    font-size: 20px;
+    color: var(--text-dark);
+    cursor: pointer;
+    position: relative;
+}
+
+.header-icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 50%;
+}
+
+/* Page Body Styling */
+.page-container {
+    padding: 20px;
+    flex: 1;
+}
+
+.status-message {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Glass Panel Container */
+.glass-panel {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+    margin-bottom: 30px;
+    border: 1px solid #f0f0f0;
+}
+
+/* Table Refinement */
+.table.table-hover tbody tr:hover {
+    background-color: #f8fbff !important;
+}
+
+.table thead th {
+    background-color: #fcfdfe;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    padding: 15px !important;
+    border-bottom: 2px solid #edf2f7 !important;
+}
+
+.table tbody td {
+    padding: 15px !important;
+    border-top: 1px solid #f1f5f9 !important;
+    font-size: 14px;
+}
+
+.btn-sm {
+    padding: 6px 15px !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+}
+
+/* Chat Button */
+.chat-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #f1c40f; /* Yellow from image */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 1100;
+}
+
+.chat-button:hover {
+    transform: scale(1.1);
+}
+
+.chat-button i {
+    color: white;
+    font-size: 24px;
+}

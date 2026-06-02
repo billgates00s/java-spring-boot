@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Common Admin Head -->
+    <th:block th:fragment="admin_head">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link th:href="@{/css/admin.css}" rel="stylesheet">
+    </th:block>
+</head>
+<body>
+
+    <!-- Admin Sidebar -->
+    <div th:fragment="admin_sidebar" class="sidebar">
+        <div class="sidebar-header">
+            HC SHOP
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a th:href="@{/admin}" th:classappend="${#request.requestURI == '/admin' ? 'active' : ''}">
+                    <i class="fas fa-th-large"></i> Tổng quan
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/category/category_list}" th:classappend="${#request.requestURI.startsWith('/category') ? 'active' : ''}">
+                    <i class="fas fa-folder"></i> Danh mục
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/admin/user_list}" th:classappend="${#request.requestURI == '/admin/user_list' ? 'active' : ''}">
+                    <i class="fas fa-users"></i> User
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/employee/employee_list}" th:classappend="${#request.requestURI.startsWith('/employee') ? 'active' : ''}">
+                    <i class="fas fa-user-tie"></i> Nhân viên
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/role/list_role}" th:classappend="${#request.requestURI.startsWith('/role') ? 'active' : ''}">
+                    <i class="fas fa-shield-alt"></i> Role
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/book/book_list}" th:classappend="${#request.requestURI.startsWith('/book') ? 'active' : ''}">
+                    <i class="fas fa-book"></i> Sách
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/userRole/list_user_role}" th:classappend="${#request.requestURI.startsWith('/userRole') ? 'active' : ''}">
+                    <i class="fas fa-user-tag"></i> User Role
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/student/student_list}" th:classappend="${#request.requestURI.startsWith('/student') ? 'active' : ''}">
+                    <i class="fas fa-user-graduate"></i> Student
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/bookBorrow/bookBorrow_list}" th:classappend="${#request.requestURI.startsWith('/bookBorrow') ? 'active' : ''}">
+                    <i class="fas fa-exchange-alt"></i> Mượn sách
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Admin Header -->
+    <header th:fragment="admin_header" class="admin-header">
+        <div class="header-left"></div>
+        <h1 th:text="${admin_title != null ? admin_title : 'ADMIN DASHBOARD'}">ADMIN DASHBOARD</h1>
+        <div class="header-icons">
+            <div class="header-icon">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="header-icon">
+                <i class="fas fa-envelope"></i>
+                <span class="badge">1</span>
+            </div>
+            <div class="header-icon" style="margin-left: 20px;">
+                <a th:href="@{/logout}" style="color: inherit; text-decoration: none;">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+</body>
+</html>

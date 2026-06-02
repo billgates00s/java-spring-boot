@@ -1,18 +1,50 @@
-<div class="header-container" xmlns:th="http://www.thymeleaf.org"
-     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<div class="header-top" xmlns:th="http://www.thymeleaf.org">
+    <div class="logo-container">
+        <a th:href="@{/}">
+            <div class="hc-logo">
+                <i class="fas fa-laptop"></i>
+                <span>HC Book</span>
+            </div>
+        </a>
+    </div>
 
-    <div class="site-name">Book Management</div>
+    <div class="search-container">
+        <form action="#" method="get">
+            <input type="text" placeholder="Tìm kiếm thương hiệu, sản phẩm...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
 
-    <div class="header-bar">
-        <th:block th:if="${#request.userPrincipal == null}">
-            <a th:href="@{/login}" class="login-btn">Login</a>
-        </th:block>
+    <div class="header-actions">
+        <div class="action-item">
+            <i class="fas fa-phone"></i>
+            <span>0776856066</span>
+        </div>
         
-        <th:block th:if="${#request.userPrincipal != null}">
-            <span class="user-greeting" style="margin-right: 15px;">
-                Hello, <strong sec:authentication="name" style="color: var(--primary);">User</strong>
-            </span>
-            <a th:href="@{/logout}" class="logout-link">Logout</a>
-        </th:block>
+        <!-- Account Dropdown -->
+        <div class="action-item account-dropdown">
+            <div class="dropdown-trigger">
+                <i class="fas fa-user" th:if="${#request.userPrincipal == null}"></i>
+                <i class="fas fa-user-check" th:if="${#request.userPrincipal != null}"></i>
+                <span th:text="${#request.userPrincipal == null ? 'Tài Khoản' : #request.userPrincipal.name}">Tài Khoản</span>
+            </div>
+            <div class="dropdown-menu">
+                <th:block th:if="${#request.userPrincipal == null}">
+                    <a th:href="@{/login}" class="dropdown-item">Đăng nhập</a>
+                    <a th:href="@{/register_user}" class="dropdown-item">Đăng ký</a>
+                </th:block>
+                <th:block th:if="${#request.userPrincipal != null}">
+                    <a th:href="@{/userInfo}" class="dropdown-item">Thông tin tài khoản</a>
+                    <a th:href="@{/admin}" th:if="${#request.isUserInRole('ROLE_ADMIN')}" class="dropdown-item">Quản trị hệ thống</a>
+                    <div class="dropdown-divider"></div>
+                    <a th:href="@{/logout}" class="dropdown-item logout-item">Đăng xuất</a>
+                </th:block>
+            </div>
+        </div>
+
+        <div class="action-item cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Giỏ Hàng (0)</span>
+        </div>
     </div>
 </div>

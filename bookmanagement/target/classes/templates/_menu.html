@@ -1,6 +1,16 @@
-<div class="menu-container" xmlns:th="http://www.thymeleaf.org"
-     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-    <a th:href="@{/}" th:classappend="${#request.requestURI == '/' ? 'active' : ''}">Home</a>
-    <a th:href="@{/userInfo}" th:classappend="${#request.requestURI == '/userInfo' ? 'active' : ''}">User profile</a>
-    <a th:href="@{/adminInfo}" th:classappend="${#request.requestURI == '/adminInfo' ? 'active' : ''}">Management</a>
-</div>
+<nav class="main-nav" xmlns:th="http://www.thymeleaf.org">
+    <div class="nav-links">
+        <a th:href="@{/}" class="nav-item active">TRANG CHỦ</a>
+        <div class="nav-item has-dropdown">
+            <a href="#">SÁCH <i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-menu">
+                <a th:each="cat : ${allCategories}" 
+                   th:href="@{/category/view(id=${cat.categoryId})}" 
+                   th:text="${cat.name_category}" 
+                   class="dropdown-item">Tên danh mục</a>
+            </div>
+        </div>
+        <a href="#" class="nav-item">HƯỚNG DẪN / REVIEW</a>
+        <a href="#" class="nav-item">VỀ CHÚNG TÔI</a>
+    </div>
+</nav>

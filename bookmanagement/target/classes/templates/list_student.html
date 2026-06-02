@@ -1,66 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <th:block th:include="/_admin_fragments :: admin_head"></th:block>
+    <title>Quản lý Student | Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
-    <title>List Student</title>
 </head>
 <body>
 
-<header>
-    <th:block th:include="/_header"></th:block>
-    <th:block th:include="/_menu"></th:block>
-</header>
+    <div th:replace="/_admin_fragments :: admin_sidebar"></div>
 
-<div class="container">
-    <h2>LIST STUDENT</h2>
-    <p><a class="btn btn-primary" th:href="@{/student/student_save}">ADD STUDENT</a></p>
-    <div>
-        <a th:href="@{/logout}">Logout</a>
-        |
-        <a th:href="@{/}">Home Page</a>
-    </div>
+    <div class="main-content">
+        <div th:replace="/_admin_fragments :: admin_header"></div>
 
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name Student</th>
-            <th>Identity Card</th>
-            <th>Address</th>
-            <th>Date Of Birth</th>
-            <th>Action</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="student : ${listStudent}">
-            <td><span th:text="*{student.studentId}"> ID </span></td>
-            <td><span th:text="*{student.name_student}"> Name Student </span></td>
-            <td><span th:text="*{student.identity_card}"> Identity Card </span></td>
-            <td><span th:text="*{student.address}"> Address</span></td>
-            <td><span th:text="*{student.birth_date}"> Date Of Birth</span></td>
-            <td>
-                <div>
-                    <a th:href="@{/student/student_view/}+ ${student.studentId}" class="btn btn-info btn-sm">View</a>
-
-                    <a th:href="@{/student/student_update/}+ ${student.studentId}" class="btn btn-info btn-sm">Edit</a>
-
-                    <a th:href="@{/student/deleteStudent/}+ ${student.studentId}" class="btn btn-danger btn-sm">Delete</a>
+        <div class="page-container">
+            <div class="glass-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <h2 style="margin: 0; font-weight: 700;">QUẢN LÝ STUDENT</h2>
+                    <a class="btn btn-primary" th:href="@{/student/student_save}" style="background-color: #3498db; border: none;">
+                        <i class="fas fa-plus"></i> ADD STUDENT
+                    </a>
                 </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
 
-</div>
-<footer>
-    <th:block th:include="/_footer"></th:block>
-</footer>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name Student</th>
+                        <th>Hobby</th>
+                        <th style="text-align: center;">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="student : ${listStudent}">
+                        <td style="vertical-align: middle;"><span th:text="${student.id}"> ID </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${student.name_student}" style="font-weight: 600;"> Name </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${student.hobby}"> Hobby </span></td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <div class="btn-group">
+                                <a th:href="@{/student/student_view/}+ ${student.id}" class="btn btn-info btn-sm">View</a>
+                                <a th:href="@{/student/student_update/}+ ${student.id}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Edit</a>
+                                <a th:href="@{/student/deleteStudent/}+ ${student.id}" class="btn btn-danger btn-sm">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>

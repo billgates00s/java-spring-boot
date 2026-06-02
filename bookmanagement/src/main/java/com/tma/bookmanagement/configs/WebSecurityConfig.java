@@ -54,10 +54,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
     private final UserDetailsServiceImpl userDetailsService;
+    private final CustomSuccessHandler customSuccessHandler;
 
 
-    public WebSecurityConfig(UserDetailsServiceImpl userDetailsService) {
+    public WebSecurityConfig(UserDetailsServiceImpl userDetailsService, CustomSuccessHandler customSuccessHandler) {
         this.userDetailsService = userDetailsService;
+        this.customSuccessHandler = customSuccessHandler;
     }
 
     @Bean
@@ -81,7 +83,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Nếu chưa login, nó sẽ redirect tới trang /login.
         http.authorizeRequests().antMatchers("/userInfo","/book/book_list","/category/category_list").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
         // Trang chỉ dành cho ADMIN
-        http.authorizeRequests().antMatchers("/adminInfo","/admin/user_list","/role/list_role","/userRole/list_user_role").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin", "/adminInfo","/admin/user_list","/role/list_role","/userRole/list_user_role").access("hasRole('ROLE_ADMIN')");
 
         http.authorizeRequests().antMatchers("/employee/employee_list").access("hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')");
         http.authorizeRequests().antMatchers("/student/student_list").access("hasAnyRole('ROLE_ADMIN','ROLE_STUDENT')");
@@ -95,7 +97,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Submit URL của trang login
                 .loginProcessingUrl("/j_spring_security_check") // Submit URL
                 .loginPage("/login")// login
-                .defaultSuccessUrl("/")//
+                .successHandler(customSuccessHandler)
                 .failureUrl("/login?error=true")//
                 .usernameParameter("username")//
                 .passwordParameter("password")

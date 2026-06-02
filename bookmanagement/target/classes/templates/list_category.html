@@ -1,60 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <th:block th:include="/_admin_fragments :: admin_head"></th:block>
+    <title>List Category | Admin</title>
+    <!-- Keep Bootstrap for the table only -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
-    <title>View Category</title>
 </head>
 <body>
 
-<header>
-    <th:block th:include="/_header"></th:block>
-    <th:block th:include="/_menu"></th:block>
-</header>
+    <!-- Sidebar -->
+    <div th:replace="/_admin_fragments :: admin_sidebar"></div>
 
-<div class="container">
-    <h2>LIST CATEGORY</h2>
-    <p><a class="btn btn-primary" th:href="@{/category/category_save}">ADD CATEGORY</a></p>
-    <div>
-        <a th:href="@{/logout}">Logout</a>
-        |
-        <a th:href="@{/}">Home Page</a>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div th:replace="/_admin_fragments :: admin_header"></div>
+
+        <!-- Page Body -->
+        <div class="page-container">
+            <div class="glass-panel" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <h2 style="margin: 0; font-weight: 700; color: #333;">LIST CATEGORY</h2>
+                    <a class="btn btn-primary" th:href="@{/category/category_save}" style="background-color: #3498db; border: none; padding: 10px 20px; font-weight: 600;">
+                        <i class="fas fa-plus"></i> ADD CATEGORY
+                    </a>
+                </div>
+
+                <table class="table table-hover" style="border: 1px solid #eee;">
+                    <thead style="background-color: #f8f9fa;">
+                    <tr>
+                        <th style="border-bottom: 2px solid #ddd;">ID</th>
+                        <th style="border-bottom: 2px solid #ddd;">Name Category</th>
+                        <th style="border-bottom: 2px solid #ddd; text-align: center;">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="category : ${listCategory}">
+                        <td style="vertical-align: middle;"><span th:text="${category.categoryId}"> ID </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${category.name_category}"> Name Category </span></td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <div class="btn-group">
+                                <a th:href="@{/category/category_view/}+ ${category.categoryId}" class="btn btn-info btn-sm" style="background-color: #5bc0de; border: none;">View</a>
+                                <a th:href="@{/category/category_update/}+ ${category.categoryId}" class="btn btn-warning btn-sm" style="background-color: #5bc0de; border: none; margin: 0 5px;">Edit</a>
+                                <a th:href="@{/category/deleteCategory/}+ ${category.categoryId}" class="btn btn-danger btn-sm" style="background-color: #d9534f; border: none;">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name Category</th>
-            <th>Action</th>
+    <!-- Chat Button -->
+    <div class="chat-button">
+        <i class="fas fa-comment-dots"></i>
+    </div>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="category : ${listCategory}">
-            <td><span th:text="*{category.categoryId}"> ID </span></td>
-            <td><span th:text="*{category.name_category}"> Name Category </span></td>
-            <td>
-                <div>
-                    <a th:href="@{/category/category_view/}+ ${category.categoryId}" class="btn btn-info btn-sm">View</a>
-
-                    <a th:href="@{/category/category_update/}+ ${category.categoryId}" class="btn btn-info btn-sm">Edit</a>
-
-                    <a th:href="@{/category/deleteCategory/}+ ${category.categoryId}" class="btn btn-danger btn-sm">Delete</a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-</div>
-<footer>
-    <th:block th:include="/_footer"></th:block>
-</footer>
 </body>
-
 </html>

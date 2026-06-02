@@ -1,59 +1,67 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <th:block th:include="/_admin_fragments :: admin_head"></th:block>
+    <title>Quản lý User | Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
-    <title>User</title>
 </head>
-<th:block th:include="/_header"></th:block>
-<th:block th:include="/_menu"></th:block>
 <body>
 
-<div class="container">
-    <h2>List User</h2>
-    <p><a class="btn btn-primary" th:href="@{/admin/register_user}">ADD USER</a></p>
-    <div>
-        <a th:href="@{/logout}">Logout</a>
-        |
-        <a href="/">Home Page</a>
+    <!-- Sidebar -->
+    <div th:replace="/_admin_fragments :: admin_sidebar"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div th:replace="/_admin_fragments :: admin_header"></div>
+
+        <!-- Page Body -->
+        <div class="page-container">
+            <div class="glass-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <h2 style="margin: 0; font-weight: 700; color: #333;">QUẢN LÝ USER</h2>
+                    <a class="btn btn-primary" th:href="@{/admin/register_user}" style="background-color: #3498db; border: none; padding: 10px 20px; font-weight: 600;">
+                        <i class="fas fa-plus"></i> ADD USER
+                    </a>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>UserName</th>
+                        <th>Password (Hash)</th>
+                        <th>Active</th>
+                        <th style="text-align: center;">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${listUser}">
+                        <td style="vertical-align: middle;"><span th:text="${user.userId}"> ID </span></td>
+                        <td style="vertical-align: middle;"><span th:text="${user.user_name}" style="font-weight: 600;"> UserName </span></td>
+                        <td style="vertical-align: middle;"><small th:text="${user.pass_word}" style="color: #999; font-size: 10px;"> Password </small></td>
+                        <td style="vertical-align: middle;">
+                            <span th:if="${user.active == 1}" class="label label-success">Active</span>
+                            <span th:if="${user.active == 0}" class="label label-default">Inactive</span>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <div class="btn-group">
+                                <a th:href="@{/admin/user_view/}+ ${user.userId}" class="btn btn-info btn-sm">View</a>
+                                <a th:href="@{/admin/user_update/}+ ${user.userId}" class="btn btn-warning btn-sm" style="margin: 0 5px;">Edit</a>
+                                <a th:href="@{/admin/deleteUser/}+ ${user.userId}" class="btn btn-danger btn-sm">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>UserName</th>
-            <th>Password</th>
-            <th>Active</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${listUser}">
-            <td><span th:text="*{user.userId}"> ID </span></td>
-            <td><span th:text="*{user.user_name}"> UserName </span></td>
-            <td><span th:text="*{user.pass_word}"> Password </span></td>
-            <td><span th:text="*{user.active}"> Active </span></td>
-            <td>
-                <div>
-                    <a th:href="@{/admin/user_view/}+ ${user.userId}" class="btn btn-info btn-sm">View</a>
-
-                    <a th:href="@{/admin/user_update/}+ ${user.userId}" class="btn btn-info btn-sm">Edit</a>
-
-                    <a th:href="@{/admin/deleteUser/}+ ${user.userId}" class="btn btn-danger btn-sm">Delete</a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-
-    </table>
-
-</div>
+    <!-- Chat Button -->
+    <div class="chat-button">
+        <i class="fas fa-comment-dots"></i>
+    </div>
 
 </body>
-<th:block th:include="/_footer"></th:block>
 </html>

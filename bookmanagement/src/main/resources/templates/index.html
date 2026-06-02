@@ -1,118 +1,144 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Book Management</title>
+    <title>HC Book | Home</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-<header>
-    <th:block th:include="/_header"></th:block>
-    <th:block th:include="/_menu"></th:block>
-</header>
+    <header>
+        <th:block th:include="/_header"></th:block>
+        <th:block th:include="/_menu"></th:block>
+    </header>
 
-<main class="animate-fade">
-    <section class="hero">
-        <h1>Welcome to Book Management</h1>
-        <p style="text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-top: -1.5rem; margin-bottom: 3rem;">
-            Your professional library and employee management portal
-        </p>
-    </section>
+    <main class="home-main">
+        <!-- Carousel Section -->
+        <section class="hero-carousel">
+            <div class="carousel-container">
+                <div class="carousel-item active">
+                    <img th:src="@{/badminton_hero_banner.png}" alt="Badminton Hero">
+                </div>
+                <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
 
-    <div class="grid-container">
-        <div class="func-card" onclick="location.href='/admin/user_list'">
-            <i class="fa-solid fa-users"></i>
-            <h3>Users</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Manage system access and roles</p>
-        </div>
-        
-        <div class="func-card" onclick="location.href='/book/book_list'">
-            <i class="fa-solid fa-book"></i>
-            <h3>Books</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Catalog and inventory management</p>
-        </div>
-        
-        <div class="func-card" onclick="location.href='/category/category_list'">
-            <i class="fa-solid fa-layer-group"></i>
-            <h3>Categories</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Organize books by genre</p>
-        </div>
-        
-        <div class="func-card" onclick="location.href='/employee/employee_list'">
-            <i class="fa-solid fa-user-tie"></i>
-            <h3>Employees</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Staff records and details</p>
-        </div>
-        
-        <div class="func-card" onclick="location.href='/student/student_list'">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <h3>Students</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Library member management</p>
-        </div>
-        
-        <div class="func-card" onclick="location.href='/role/list_role'">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h3>Roles</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Permission level definitions</p>
-        </div>
-        
-        <div class="func-card" onclick="location.href='/userRole/list_user_role'">
-            <i class="fa-solid fa-user-gear"></i>
-            <h3>User Roles</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Assign roles to specific users</p>
-        </div>
-        
-        <div class="func-card" onclick="location.href='/bookBorrow/bookBorrow_list'">
-            <i class="fa-solid fa-hand-holding-heart"></i>
-            <h3>Borrowing</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Track book loans and returns</p>
-        </div>
-    </div>
-    
-    <div style="margin-top: 5rem;" class="select-wrapper glass">
-        <label for="menu">Quick Navigation</label>
-        <div style="display: flex; gap: 1rem;">
-            <select id="menu" name="menu" style="flex: 1;">
-                <option value="1">View User List</option>
-                <option value="2">View Book Catalog</option>
-                <option value="3">View Categories</option>
-                <option value="4">View Employees</option>
-                <option value="5">View Students</option>
-                <option value="6">View Roles</option>
-                <option value="7">View User Role Map</option>
-                <option value="8">View Borrowing History</option>
-            </select>
-            <button onclick="view()">Go</button>
-        </div>
-    </div>
-</main>
+            <!-- Floating Support Button -->
+            <div class="floating-contact">
+                <a href="tel:0776856066" class="phone-link">
+                    <i class="fas fa-phone-alt"></i>
+                </a>
+            </div>
+        </section>
 
-<script type="text/javascript">
-    function view() {
-        var x = document.getElementById("menu").value;
-        const routes = {
-            "1": "/admin/user_list",
-            "2": "/book/book_list",
-            "3": "/category/category_list",
-            "4": "/employee/employee_list",
-            "5": "/student/student_list",
-            "6": "/role/list_role",
-            "7": "/userRole/list_user_role",
-            "8": "/bookBorrow/bookBorrow_list"
-        };
-        if (routes[x]) {
-            window.location.href = routes[x];
-        }
-    }
-</script>
+        <!-- Categories Section -->
+        <section class="category-section" th:if="${listCategory != null}">
+            <div class="section-title">DANH MỤC</div>
+            <div class="category-grid">
+                <div class="category-card" th:each="category : ${listCategory}">
+                    <i class="fas fa-folder" style="font-size: 50px; color: #4682b4; margin: 15px 0;"></i>
+                    <span th:text="${category.name_category}">Tên danh mục</span>
+                </div>
+            </div>
+        </section>
 
-<footer>
-    <th:block th:include="/_footer"></th:block>
-</footer>
+        <!-- Product Subsections -->
+        <section class="product-section">
+            <!-- New Products -->
+            <div class="subsection">
+                <div class="subsection-header">
+                    Sách mới
+                    <a href="#">Xem tất cả ></a>
+                </div>
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <img th:src="@{/vn-11134258-81ztc-momw6akl6v4ef3.png}" class="product-badge">
+                        <i class="far fa-heart product-wishlist"></i>
+                        <img th:src="@{/tam-li-hoc-ve-tien.jpg}" class="product-img">
+                        <div class="product-info">
+                            <h3>Tâm lý học về tiền - Morgan Housel</h3>
+                            <p class="product-price">189,000đ</p>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <img th:src="@{/badminton_racket.png}" class="product-img">
+                        <div class="product-info">
+                            <h3>Vợt Cầu Lông Yonex NanoRay 10F</h3>
+                            <p class="product-price">1,250,000đ</p>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <img th:src="@{/tam-li-hoc-ve-tien.jpg}" class="product-img">
+                        <div class="product-info">
+                            <h3>Combo Sách Đầu Tư Tài Chính</h3>
+                            <p class="product-price">450,000đ</p>
+                        </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <img th:src="@{/badminton_racket.png}" class="product-img">
+                        <div class="product-info">
+                            <h3>Vợt Victor Thruster K 220H</h3>
+                            <p class="product-price">2,150,000đ</p>
+                        </div>
+                    </div>
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <img th:src="@{/tam-li-hoc-ve-tien.jpg}" class="product-img">
+                        <div class="product-info">
+                            <h3>Sách: Cha Giàu Cha Nghèo</h3>
+                            <p class="product-price">120,000đ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Section 2: Vợt cầu lông -->
+            <div class="subsection">
+                <div class="subsection-header">
+                    Vợt cầu lông
+                    <a href="#">Xem tất cả ></a>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card" th:each="i : ${#numbers.sequence(1, 5)}">
+                        <img th:src="@{/badminton_racket.png}" class="product-img">
+                        <div class="product-info">
+                            <h3>Vợt Yonex Astrox Next Gen</h3>
+                            <p class="product-price">3,500,000đ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Section 3: Sách bán chạy -->
+            <div class="subsection">
+                <div class="subsection-header" style="background-color: #3498db;">
+                    Sách bán chạy
+                    <a href="#">Xem tất cả ></a>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card" th:each="i : ${#numbers.sequence(1, 5)}">
+                        <img th:src="@{/tam-li-hoc-ve-tien.jpg}" class="product-img">
+                        <div class="product-info">
+                            <h3>Tâm lý học về tiền</h3>
+                            <p class="product-price">189,000đ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <th:block th:include="/_footer"></th:block>
+    </footer>
 
 </body>
+
 </html>
